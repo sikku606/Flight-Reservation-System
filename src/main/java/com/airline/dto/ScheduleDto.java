@@ -26,6 +26,4 @@ public class ScheduleDto {
 
 	private int totalSeat;
 	
-//	@ManyToOne
-//	private Flight flight;
 }

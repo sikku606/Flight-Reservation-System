@@ -8,5 +8,6 @@ public interface FlightRepo extends JpaRepository<Flight , Integer> {
 
 	Flight findById(Long id);
 	
+	Flight findByFlightNo(String flightNo);
 
 }

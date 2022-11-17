@@ -8,7 +8,7 @@ import com.airline.dto.BookingDto;
 
 public interface BookingService {
 
-	BookingDto createBooking(BookingDto bookingDto);
+//	BookingDto createBooking(BookingDto bookingDto , long userId);
 
 	BookingDto getBookingById(Long id);
 
@@ -17,5 +17,7 @@ public interface BookingService {
 	List<BookingDto> getAllBookings();
 
 	void deleteBooking(Long id);
+
+	BookingDto createBooking(BookingDto bookingDto);
 
 }

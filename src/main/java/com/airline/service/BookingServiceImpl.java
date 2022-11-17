@@ -8,9 +8,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.airline.dto.BookingDto;
+import com.airline.dto.ScheduleDto;
 import com.airline.exception.RecordNotFoundException;
 import com.airline.model.Booking;
+import com.airline.model.Flight;
+import com.airline.model.Schedule;
+import com.airline.model.User;
 import com.airline.repository.BookingRepo;
+import com.airline.repository.FlightRepo;
+import com.airline.repository.ScheduleRepo;
+import com.airline.repository.UserRepo;
 
 @Service
 public class BookingServiceImpl implements BookingService {
@@ -18,6 +25,15 @@ public class BookingServiceImpl implements BookingService {
 	@Autowired
 	private BookingRepo bookingRepo;
 
+	@Autowired
+	private UserRepo userRepo;
+	
+	@Autowired
+	private ScheduleRepo scheduleRepo;
+	
+	@Autowired
+	private FlightRepo flightRepo;
+	
 	/**
 	 * add booking.
 	 * 
@@ -27,8 +43,14 @@ public class BookingServiceImpl implements BookingService {
 	 */
 
 	@Override
-	public BookingDto createBooking(BookingDto bookingDto) {
+	public BookingDto createBooking(BookingDto bookingDto ) {
 		Booking booking = this.dtoToEntity(bookingDto);
+//		User orElse = userRepo.findById(userId).orElse(null);
+//		booking.setUser(orElse);
+		Flight flight = flightRepo.findByFlightNo(booking.getFlightNo());
+		Schedule schedule = scheduleRepo.getById(flight.getId()); 
+		schedule.setAvailableSeat(schedule.getTotalSeat() - bookingDto.getNoOfseat());
+		scheduleRepo.save(schedule);
 		Booking saveBooking = this.bookingRepo.save(booking);
 		return this.entityToDto(saveBooking);
 	}

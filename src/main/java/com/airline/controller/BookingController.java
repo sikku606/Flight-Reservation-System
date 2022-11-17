@@ -36,8 +36,8 @@ public class BookingController {
 	 * @throws new Booking
 	 */
 	@PostMapping
-	public ResponseEntity<BookingDto> createBooking(@Valid @RequestBody BookingDto bookingDto) {
-		BookingDto booking2 = bookingService.createBooking(bookingDto);
+	public ResponseEntity<BookingDto> createBooking(@Valid @RequestBody BookingDto bookingDto ) {
+		BookingDto booking2 = bookingService.createBooking(bookingDto );
 		return new ResponseEntity<BookingDto>(booking2, HttpStatus.CREATED);
 	}
 	/**
