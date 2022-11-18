@@ -28,7 +28,6 @@ public class FlightServiceImpl implements FlightService {
 		Flight flight = new Flight();
 		flight.setFlightNo(dto.getFlightNo());
 		flight.setFlightName(dto.getFlightName());
-		flight.setSeatCapacity(dto.getSeatCapacity());
 		flight.setLuggageCapacity(dto.getLuggageCapacity());
 		return flight;
 	}
@@ -43,7 +42,6 @@ public class FlightServiceImpl implements FlightService {
 		FlightDto dto = new FlightDto();
 		dto.setFlightNo(flight.getFlightNo());
 		dto.setFlightName(flight.getFlightName());
-		dto.setSeatCapacity(flight.getSeatCapacity());
 		dto.setLuggageCapacity(flight.getLuggageCapacity());
 		List<ScheduleDto> scheduleItems = flight.getSchedules().stream().map(o -> {
 			ScheduleDto scheduleItem = new ScheduleDto();
@@ -103,9 +101,6 @@ public class FlightServiceImpl implements FlightService {
 		if (!StringUtils.isEmpty(flightDto.getFlightName())) {
 			flight2.setFlightName(flightDto.getFlightName());
 		}
-		if (!StringUtils.isEmpty(flightDto.getSeatCapacity())) {
-			flight2.setSeatCapacity(flightDto.getSeatCapacity());
-		}
 		if (!StringUtils.isEmpty(flightDto.getLuggageCapacity())) {
 			flight2.setLuggageCapacity(flightDto.getLuggageCapacity());
 		}
@@ -131,19 +126,15 @@ public class FlightServiceImpl implements FlightService {
 		return entityToDto(flightRepo.findById(id));
 	}
 
-//    public Flight saveFlight(Flight flight) {
-//    	List<ScheduleDto> schedules = new ArrayList<>(); 
-//    	
-//    	ScheduleDto schedule1 = new ScheduleDto();
-//    	schedule1.setSource("String");
-//  
-//    	schedules.add(schedule1);
-//    	
-//    	schedule1.setFlight(flight);
-//
-//    	
-//    	flight = flightRepo.save(flight);
-//    	return flight;
-//    }
+	@Override
+	public List<FlightDto> viewAllFlights() {
+		List<Flight> flights = flightRepo.findAll();
+		return flights.stream().map(flight -> entityToDto(flight)).collect(Collectors.toList());
+	}
+
+	
+
+
+
 
 }

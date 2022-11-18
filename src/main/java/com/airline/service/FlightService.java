@@ -23,12 +23,9 @@ public interface FlightService {
 
 	FlightDto getFlightById(Long id);
 
-//	Flight findByFlightNo(String flightNo);
+	List<FlightDto> viewAllFlights();
 
-//	Flight saveFlight(Flight flight);
-	
-
-
+//	List<FlightDto> findBySourceAndDestination(String source, String destination);
 
 
 	

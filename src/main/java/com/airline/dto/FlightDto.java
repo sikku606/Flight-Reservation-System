@@ -14,8 +14,6 @@ public class FlightDto {
 
 	private String flightName;
 
-	private int seatCapacity;
-
 	private int luggageCapacity;
 	
 	@OneToMany

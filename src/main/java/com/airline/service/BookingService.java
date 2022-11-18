@@ -18,6 +18,8 @@ public interface BookingService {
 
 	void deleteBooking(Long id);
 
-	BookingDto createBooking(BookingDto bookingDto);
+	BookingDto createBooking(BookingDto bookingDto );
+
+	String cancelBooking(Long bookingId);
 
 }

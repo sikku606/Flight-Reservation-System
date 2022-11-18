@@ -36,7 +36,7 @@ public class BookingController {
 	 * @throws new Booking
 	 */
 	@PostMapping
-	public ResponseEntity<BookingDto> createBooking(@Valid @RequestBody BookingDto bookingDto ) {
+	public ResponseEntity<BookingDto> createBooking(@Valid @RequestBody BookingDto bookingDto) {
 		BookingDto booking2 = bookingService.createBooking(bookingDto );
 		return new ResponseEntity<BookingDto>(booking2, HttpStatus.CREATED);
 	}
@@ -90,5 +90,12 @@ public class BookingController {
 	@DeleteMapping("/{id}")
 	public void deleteBooking(@PathVariable("id") Long id) {
 		bookingService.deleteBooking(id);
+	}
+	
+	
+	@PostMapping("/{bookingId}")
+	public String cancelBooking(@PathVariable Long bookingId) {
+		return bookingService.cancelBooking(bookingId);
+		
 	}
 }

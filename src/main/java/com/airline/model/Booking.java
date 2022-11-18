@@ -1,9 +1,14 @@
 package com.airline.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
@@ -30,6 +35,7 @@ public class Booking extends BaseEntity {
 	@Max(value = 6, message = "Please choose seat not more than 6 !!")
 	private int noOfseat;
 
+	
 	@ManyToOne
 	private User user;
 

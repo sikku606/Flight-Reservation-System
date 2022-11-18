@@ -7,6 +7,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import org.aspectj.weaver.NewConstructorTypeMunger;
 
 import lombok.Data;
 
@@ -20,8 +23,6 @@ public class Flight extends BaseEntity {
 	@Column(name = "flightName")
 	private String flightName;
 
-	@Column(name = "seatCapacity")
-	private int seatCapacity;
 
 	@Column(name = "luggageCapacity")
 	private int luggageCapacity;
@@ -29,4 +30,5 @@ public class Flight extends BaseEntity {
 	@OneToMany(mappedBy = "flight", cascade = CascadeType.ALL)
 	private List<Schedule> schedules = new ArrayList<>();
 
+	
 }

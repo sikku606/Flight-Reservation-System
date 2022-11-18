@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.airline.dto.FlightDto;
+import com.airline.dto.ScheduleDto;
+import com.airline.dto.UserDto;
 import com.airline.model.Flight;
 import com.airline.service.FlightService;
 
@@ -42,14 +44,16 @@ public class FlightController {
 
 	/**
 	 * Get list of All Flight url: /flight/ method: GET
+	 * @return 
 	 *
 	 * @return List of all flight
 	 * @throws Flight list
 	 */
 
 	@GetMapping
-	public ResponseEntity<List<FlightDto>> viewAllFlight(FlightDto flightDto) {
-		return new ResponseEntity<List<FlightDto>>(HttpStatus.OK);
+	public ResponseEntity<List<FlightDto>> viewAllFlight() {
+		List<FlightDto> flight = flightService.viewAllFlights();
+		return new ResponseEntity<List<FlightDto>>(flight, HttpStatus.OK);
 	}
 
 	/**
@@ -60,9 +64,9 @@ public class FlightController {
 	 * @throws specific flight
 	 */
 
-//	@GetMapping("/{id}")
-//	public ResponseEntity<FlightDto> getFlightById(@PathVariable Long id) {
-//		return ResponseEntity.ok(flightService.getFlightById(id));
+//	@GetMapping("/{source}{destination}")
+//	public List<FlightDto> viewAllFlights( @PathVariable String source, @PathVariable String destination) {
+//		return flightService.findBySourceAndDestination(source, destination);
 //	}
 	/**
 	 * Edit a schedule Service url: /schedule method: PUT
